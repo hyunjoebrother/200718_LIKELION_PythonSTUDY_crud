@@ -1,0 +1,10 @@
+<h1>new</h1>
+
+<form action="{% url 'create'%}" method="POST">
+    {% csrf_token %}
+    <h3>제목</h3>
+    <input type="text" name="title">
+    <h3>내용</h3>
+    <textarea name="body" id="" cols="30" rows="10"></textarea>
+    <input type="submit" value="작성완료">
+</form>

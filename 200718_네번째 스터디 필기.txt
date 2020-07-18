@@ -1,0 +1,112 @@
+200718 멋사 네번째 스터디
+
+
+*주어진 코드는 가상환경 없어서 만들어주자
+python -m venv mymenv #venv가 가상환경 이름이 myvenv
+실행하기
+source myvenv/Scripts/activate #(myvenv)가 켜졌다는 뜻
+가상환경 켰으니까ㅏ 쟝고라는 놀이터를 만드자
+pip install django #장고 설치 확인
+
+django-admin startproject myproject #장고 프로젝트 만들기
+
+프로젝트 이름 헷갈리니까 djangoproject로 폴더 이름 바꿈
+cd djangoproject 그 폴더로 이동
+APP 만들자
+python manage.py startapp myapp
+app project서로 티키타카를 위해서 상속임을 알려줌
+myproject-setting.py-installed_apps 안에
+myapp.apps.MyappConfig' 추가
+
+HTML을 담은, myapp 안에 templates 폴더 만들기
+HTML을 띄우자 -> views에서 정의하기
+req요청 들어오면
+render함수(첫째로 인수 들어오면 둘째 인자을 반환해라)
+def index(req):
+    return render(req,'index.html')
+
+def blog(req):
+    return render(req,'blog.html')
+
+다음에는 urls
+myapp 폴더 안에 view불라온다고 선언
+import myapp.views
+
+index함수를 실행시키자, 그 name을 index라고 해줌
+ path('',myapp.views.index, name='index'),
+ path('blog/',myapp.views.blog, name='blog'),
+
+다음에 서버 실행
+python manage.py runserver
+
+>>>이제 migrate로 Admin 만들기
+이번 이메일clara_31naver, 비번이즈132435
+
+이제 model ㄱㄱ (올해 강노 start)
+*쟝고에 모델 관련 함수ㄱ검색해보기
+title
+created_at
+body 이렇게 3개 생성
+
+모델 다 만들고 만들었다고 알려주는 명령어 migrate
+
+이제 admin 만들자
+
+글 쓰면 object1 이런식으로 나옴
+def __str__(self):
+   return self.title #제목 값으로 바꿔주는 함수는 model에 추가
+
+/admin 대신에 /blog로 확인
+살짝 설명은 놓침 ㅠㅠ 
+
+다음에 디테일 페이지 만들어서 누르면 글 나오도록하고
+
+이제 글쓰기 페이지 만들기
+*윤호오빠랑 강노 변수이름 다름
+
+
+서버 runserver
+
+
+생성 C: req.POST
+읽기 R: get_object
+수정 U: req.POST (+get_obj...
+삭제 D: get_object_
+
+저번엔 CR함 오늘은 UD
+
+먼저 필요한 html을 템플릿에 만들자
+base index new blog detail edit
+
+View에는 new create 등ㄷ으
+
+html 만들면
+views에서 def선언 
+url에서 패스 만들기
+    path('blog/new',myapp.views.new, name='new'),
+
+이제 new html 꾸미기
+
+blog_id는 해당 객체의 번호
+
+redirect 함수를 만들고 위에 import
+return redirect('/blog/'+str(blog_id))
+str은 문자열로 바꿈
+
+그리고 함수를 실행시키기 위해 url 패스도 추가
+
+###윤호오빠 그 완성 코드와 비교하기
+-> 수업용 완성하면 깃허브
+집에서 혼자 아예 첨부터 하는 것도 따로 올리기
+
+업데이트 시작
+edit html ㄱㄱ
+
+오늘은 delete까지 ㅇㅇ
+
+<int:blog_id>
+패스 컨버터 -> 함수 넘기고 담는다
+
+
+
+
